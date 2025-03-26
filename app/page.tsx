@@ -1,101 +1,80 @@
-import Image from "next/image";
+import React from "react";
+import { ArrowRight, Bot, Calendar, FileText } from "lucide-react";
+import Link from "next/link";
 
-export default function Home() {
+const LandingPage = () => {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div className="bg-white text-black font-sans min-h-screen">
+      {/* Navbar */}
+      <nav className="flex justify-between items-center p-6 border-4 border-black">
+        <div className="flex items-center space-x-2">
+          <Bot className="w-10 h-10" />
+          <h1 className="text-2xl font-bold">Meet Buddy</h1>
+        </div>
+        <div className="space-x-4">
+          <Link
+            className="bg-white border-2 border-black px-4 py-2 font-bold hover:bg-yellow-100 active:bg-yellow-200 transition-colors"
+            href={"/sign-in"}
+          >
+            Login
+          </Link>
+          <Link
+            href={"/sign-up"}
+            className="bg-black text-white border-2 border-black px-4 py-2 font-bold hover:bg-gray-800 active:bg-gray-900 transition-colors"
+          >
+            Get Started
+          </Link>
+        </div>
+      </nav>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      {/* Hero Section */}
+      <main className="container mx-auto px-6 py-16">
+        <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="space-y-6">
+            <h2 className="text-5xl font-black border-4 border-black p-4 bg-white shadow-[8px_8px_0px_rgba(0,0,0,1)]">
+              Transform Meetings into Actionable Insights
+            </h2>
+            <p className="text-xl border-2 border-black p-3 bg-white shadow-[6px_6px_0px_rgba(0,0,0,1)]">
+              Automatically summarize, track, and optimize your team&apos;s
+              meetings with AI-powered intelligence.
+            </p>
+            <div className="flex space-x-4">
+              <button className="flex items-center bg-green-500 text-white border-4 border-black px-6 py-3 font-bold hover:bg-green-600 active:bg-green-700 shadow-[6px_6px_0px_rgba(0,0,0,1)] transition-all">
+                Start Free Trial <ArrowRight className="ml-2" />
+              </button>
+            </div>
+          </div>
+          <div className="relative">
+            <div className="bg-blue-400 border-4 border-black absolute inset-0 -rotate-6 shadow-[10px_10px_0px_rgba(0,0,0,1)]"></div>
+            <div className="relative bg-white border-4 border-black p-6 z-10 shadow-[12px_12px_0px_rgba(0,0,0,1)]">
+              <h3 className="text-2xl font-bold mb-4">Key Features</h3>
+              <ul className="space-y-3">
+                <li className="flex items-center border-2 border-black p-2 bg-yellow-100">
+                  <FileText className="mr-3" />
+                  AI-Powered Meeting Summaries
+                </li>
+                <li className="flex items-center border-2 border-black p-2 bg-green-100">
+                  <Calendar className="mr-3" />
+                  Automatic Action Item Tracking
+                </li>
+                <li className="flex items-center border-2 border-black p-2 bg-pink-100">
+                  <Bot className="mr-3" />
+                  Seamless Notion Integration
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+
+      {/* Footer */}
+      <footer className="bg-white border-t-4 border-black p-6 text-center">
+        <p className="font-bold">
+          © 2025 Meet Buddy. Revolutionizing Meeting Productivity.
+        </p>
       </footer>
     </div>
   );
-}
+};
+
+export default LandingPage;
