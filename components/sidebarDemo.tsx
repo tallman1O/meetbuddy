@@ -2,10 +2,10 @@
 import React, { useState } from "react";
 import { Sidebar, SidebarBody, SidebarLink } from "@/components/ui/sidebar";
 import {
-  IconArrowLeft,
   IconBrandTabler,
-  IconSettings,
-  IconUserBolt,
+  IconMicrophone,
+  IconTextCaption,
+  IconVideo,
 } from "@tabler/icons-react";
 import Link from "next/link";
 import { motion } from "motion/react";
@@ -24,21 +24,21 @@ export default function SidebarDemo() {
       label: "Speech-To-Text Summarizer",
       href: "/dashboard/speech-to-text",
       icon: (
-        <IconUserBolt className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
+        <IconMicrophone className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
       ),
     },
     {
       label: "Text Summarizer",
       href: "/dashboard/text-summarizer",
       icon: (
-        <IconSettings className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
+        <IconTextCaption className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
       ),
     },
     {
       label: "Video Summarizer",
       href: "/dashboard/video-summarizer",
       icon: (
-        <IconArrowLeft className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
+        <IconVideo className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
       ),
     },
   ];
