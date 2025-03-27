@@ -9,8 +9,8 @@ import { Loader2 } from "lucide-react";
 
 export default function TextSummarizer() {
   const [formData, setFormData] = useState({
-    meetingTitle: "",
-    meetingDate: "",
+    meeting_title: "", // Changed to match backend key
+    date: "", // Changed to match backend key
     attendees: "",
     text: "",
   });
@@ -20,7 +20,7 @@ export default function TextSummarizer() {
   const [summaryData, setSummaryData] = useState<{
     summary?: string;
     timelines?: string[];
-    calendarEvents?: string[];
+    calendar_events?: { task: string; deadline: string; event_link: string }[];
   }>({});
 
   const handleChange = (
@@ -36,20 +36,20 @@ export default function TextSummarizer() {
     setError(null);
 
     try {
+      const payload = {
+        ...formData,
+        attendees: formData.attendees.split(",").join("\n"), // Convert to newline-separated format
+      };
+
       const response = await axios.post(
         "http://localhost:5000/text-summary",
-        formData,
+        payload,
         {
           headers: { "Content-Type": "application/json" },
         }
       );
 
-      setSummaryData({
-        summary: response.data.summary,
-        timelines: response.data.timelines,
-        calendarEvents: response.data.calendar_events,
-      });
-
+      setSummaryData(response.data);
       setFormSubmitted(true);
     } catch (err) {
       setError(
@@ -77,24 +77,24 @@ export default function TextSummarizer() {
 
           <form className="my-8" onSubmit={handleSubmit}>
             <LabelInputContainer className="mb-4">
-              <Label htmlFor="meetingTitle">Meeting Title</Label>
+              <Label htmlFor="meeting_title">Meeting Title</Label>
               <Input
-                id="meetingTitle"
+                id="meeting_title"
                 placeholder="Enter meeting title"
                 type="text"
                 onChange={handleChange}
-                value={formData.meetingTitle}
+                value={formData.meeting_title}
                 required
               />
             </LabelInputContainer>
 
             <LabelInputContainer className="mb-4">
-              <Label htmlFor="meetingDate">Meeting Date</Label>
+              <Label htmlFor="date">Meeting Date</Label>
               <Input
-                id="meetingDate"
+                id="date"
                 type="date"
                 onChange={handleChange}
-                value={formData.meetingDate}
+                value={formData.date}
                 required
               />
             </LabelInputContainer>
@@ -130,7 +130,6 @@ export default function TextSummarizer() {
               type="submit"
             >
               Submit &rarr;
-              <BottomGradient />
             </button>
           </form>
         </div>
@@ -178,8 +177,16 @@ export default function TextSummarizer() {
                     Calendar Events
                   </h3>
                   <ul className="list-disc pl-5 text-sm text-neutral-600 dark:text-neutral-400">
-                    {summaryData.calendarEvents?.map((event, index) => (
-                      <li key={index}>{event}</li>
+                    {summaryData.calendar_events?.map((event, index) => (
+                      <li key={index}>
+                        {event.task} - {event.deadline} -{" "}
+                        <a
+                          href={event.event_link}
+                          className="text-blue-500 underline"
+                        >
+                          View Event
+                        </a>
+                      </li>
                     ))}
                   </ul>
                 </div>
@@ -195,15 +202,6 @@ export default function TextSummarizer() {
     </div>
   );
 }
-
-const BottomGradient = () => {
-  return (
-    <>
-      <span className="absolute inset-x-0 -bottom-px block h-px w-full bg-gradient-to-r from-transparent via-cyan-500 to-transparent opacity-0 transition duration-500 group-hover/btn:opacity-100" />
-      <span className="absolute inset-x-10 -bottom-px mx-auto block h-px w-1/2 bg-gradient-to-r from-transparent via-indigo-500 to-transparent opacity-0 blur-sm transition duration-500 group-hover/btn:opacity-100" />
-    </>
-  );
-};
 
 const LabelInputContainer = ({
   children,

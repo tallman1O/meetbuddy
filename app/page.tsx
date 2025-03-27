@@ -39,9 +39,12 @@ const LandingPage = () => {
               meetings with AI-powered intelligence.
             </p>
             <div className="flex space-x-4">
-              <button className="flex items-center bg-green-500 text-white border-4 border-black px-6 py-3 font-bold hover:bg-green-600 active:bg-green-700 shadow-[6px_6px_0px_rgba(0,0,0,1)] transition-all">
-                Start Free Trial <ArrowRight className="ml-2" />
-              </button>
+              <Link
+                href={"/dashboard"}
+                className="flex items-center bg-green-500 text-white border-4 border-black px-6 py-3 font-bold hover:bg-green-600 active:bg-green-700 shadow-[6px_6px_0px_rgba(0,0,0,1)] transition-all"
+              >
+                Get Started <ArrowRight className="ml-2" />
+              </Link>
             </div>
           </div>
           <div className="relative">
@@ -59,7 +62,7 @@ const LandingPage = () => {
                 </li>
                 <li className="flex items-center border-2 border-black p-2 bg-pink-100">
                   <Bot className="mr-3" />
-                  Seamless Notion Integration
+                  Seamless Google Calender Integration
                 </li>
               </ul>
             </div>
