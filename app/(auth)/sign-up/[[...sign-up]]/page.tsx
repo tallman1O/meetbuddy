@@ -25,8 +25,8 @@ export default function Page() {
             </h2>
 
             <p className="mt-4 leading-relaxed text-white/90">
-              Sign-Up to get started with your interview preparation with
-              Prepmate and land your dream job. 🚀
+              Sign-Up to get started with your meetings with MeetBuddy and climb
+              up the ladder of success. 🚀
             </p>
           </div>
         </section>
